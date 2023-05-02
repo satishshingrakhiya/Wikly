@@ -5,12 +5,10 @@ import com.wikly.UserService.repiository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -24,8 +22,8 @@ public class UserController {
     }
 
     @GetMapping("api/v1/user/{userId}")
-    public ResponseEntity<User> getUserById(int userId) {
-        User user = repository.findById(userId);
+    public ResponseEntity<User> getUserById(@PathVariable int userId) {
+        User user = repository.findByUserId(userId);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 

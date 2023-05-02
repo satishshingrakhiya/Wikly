@@ -15,5 +15,4 @@ public class User {
     private String firstName;
     private String lastName;
     private List<Address> addresses;
-    private List<Order> orders;
 }

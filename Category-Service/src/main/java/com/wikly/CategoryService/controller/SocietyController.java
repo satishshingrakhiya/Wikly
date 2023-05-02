@@ -2,6 +2,7 @@ package com.wikly.CategoryService.controller;
 
 import com.wikly.CategoryService.model.Society;
 import com.wikly.CategoryService.repository.SocietyRepository;
+import com.wikly.CategoryService.service.SequenceGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,9 @@ public class SocietyController {
     @Autowired
     private SocietyRepository repository;
 
+    @Autowired
+    private SequenceGeneratorService sequenceGenerator;
+
     @GetMapping("api/v1/societies")
     public ResponseEntity<List<Society>> getSocieties() {
         List<Society> societies = repository.findAll();
@@ -26,6 +30,7 @@ public class SocietyController {
 
     @PostMapping("api/v1/society")
     public ResponseEntity<Society> addSociety(@RequestBody Society society) {
+        society.setSocietyId(sequenceGenerator.generateSequence(Society.SEQUENCE_NAME));
         repository.save(society);
         return new ResponseEntity<>(society, HttpStatus.CREATED);
     }

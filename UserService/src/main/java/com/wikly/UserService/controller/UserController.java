@@ -2,6 +2,7 @@ package com.wikly.UserService.controller;
 
 import com.wikly.UserService.model.User;
 import com.wikly.UserService.repiository.UserRepository;
+import com.wikly.UserService.service.SequenceGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,9 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    private SequenceGeneratorService sequenceGenerator;
 
     @GetMapping("api/v1/users")
     public ResponseEntity<List<User> >getAllUsers() {
@@ -29,6 +33,7 @@ public class UserController {
 
     @PostMapping("api/v1/addUser")
     public ResponseEntity<User> addUser(@RequestBody User user) {
+        user.setUserId(sequenceGenerator.generateSequence(User.SEQUENCE_NAME));
         repository.save(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }

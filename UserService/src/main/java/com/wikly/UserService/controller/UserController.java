@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/userservice")
 public class UserController {
     @Autowired
     private UserRepository repository;
@@ -19,19 +20,19 @@ public class UserController {
     @Autowired
     private SequenceGeneratorService sequenceGenerator;
 
-    @GetMapping("api/v1/users")
+    @GetMapping("/api/v1/users")
     public ResponseEntity<List<User> >getAllUsers() {
         List<User> users = repository.findAll();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @GetMapping("api/v1/user/{userId}")
+    @GetMapping("/api/v1/user/{userId}")
     public ResponseEntity<User> getUserById(@PathVariable int userId) {
         User user = repository.findByUserId(userId);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @PostMapping("api/v1/addUser")
+    @PostMapping("/api/v1/addUser")
     public ResponseEntity<User> addUser(@RequestBody User user) {
         user.setUserId(sequenceGenerator.generateSequence(User.SEQUENCE_NAME));
         repository.save(user);

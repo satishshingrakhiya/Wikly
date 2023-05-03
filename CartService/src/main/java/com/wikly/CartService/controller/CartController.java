@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/cartservice")
 public class CartController {
     @Autowired
     private CartRepository repository;
@@ -18,13 +19,13 @@ public class CartController {
     @Autowired
     SequenceGeneratorService sequenceGenerator;
 
-    @GetMapping("api/v1/cartItems/{userId}")
+    @GetMapping("/api/v1/cartitems/{userId}")
     public ResponseEntity<List<Cart>> getCartItems(@PathVariable int userId) {
         List<Cart> cartList = repository.findAllByUserId(userId);
         return new ResponseEntity<>(cartList, HttpStatus.OK);
     }
 
-    @PostMapping("api/v1/addCartItem")
+    @PostMapping("/api/v1/addcartitem")
     public ResponseEntity<Cart> addCartItem(@RequestBody Cart cart) {
         cart.setCartId(sequenceGenerator.generateSequence(Cart.SEQUENCE_NAME));
         repository.save(cart);

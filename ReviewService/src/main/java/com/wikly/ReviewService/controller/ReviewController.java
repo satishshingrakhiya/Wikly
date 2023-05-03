@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/reviewservice")
 public class ReviewController {
     @Autowired
     private ReviewRepository repository;
@@ -18,13 +19,13 @@ public class ReviewController {
     @Autowired
     private SequenceGeneratorService sequenceGenerator;
 
-    @GetMapping("api/v1/reviews/{categoryId}")
+    @GetMapping("/api/v1/reviews/{categoryId}")
     public ResponseEntity<List<Review>> getReview(@PathVariable int categoryId) {
         List<Review> reviews = repository.findAllByCategoryId(categoryId);
         return new ResponseEntity<>(reviews, HttpStatus.OK);
     }
 
-    @PostMapping("api/v1/addReview")
+    @PostMapping("/api/v1/addreview")
     public ResponseEntity<Review> addReview(@RequestBody Review review) {
         review.setReviewId(sequenceGenerator.generateSequence(Review.SEQUENCE_NAME));
         return new ResponseEntity<>(repository.save(review), HttpStatus.CREATED);

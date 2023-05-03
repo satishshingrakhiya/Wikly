@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/categoryservice")
 public class CategoryController {
     @Autowired
     private CategoryRepository repository;
@@ -20,7 +21,7 @@ public class CategoryController {
     @Autowired
     private SequenceGeneratorService sequenceGenerator;
 
-    @GetMapping("api/v1/categories/{societyId}")
+    @GetMapping("/api/v1/categories/{societyId}")
     public ResponseEntity<List<Category>> getCategories (@PathVariable int societyId) {
         List<Category> categories;
         try {
@@ -36,7 +37,7 @@ public class CategoryController {
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
-    @PostMapping("api/v1/addCategory")
+    @PostMapping("/api/v1/addcategory")
     public ResponseEntity<Category> addCategory(@RequestBody Category category) {
         category.setCategoryId(sequenceGenerator.generateSequence(Category.SEQUENCE_NAME));
         return new ResponseEntity<>(repository.save(category), HttpStatus.CREATED);

@@ -6,14 +6,12 @@ import com.wikly.CategoryService.service.SequenceGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/categoryservice")
 public class SocietyController {
 
     @Autowired
@@ -28,7 +26,7 @@ public class SocietyController {
         return new ResponseEntity<>(societies, HttpStatus.OK);
     }
 
-    @PostMapping("api/v1/society")
+    @PostMapping("api/v1/addsociety")
     public ResponseEntity<Society> addSociety(@RequestBody Society society) {
         society.setSocietyId(sequenceGenerator.generateSequence(Society.SEQUENCE_NAME));
         repository.save(society);

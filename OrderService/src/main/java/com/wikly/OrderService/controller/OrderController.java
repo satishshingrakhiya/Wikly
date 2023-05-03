@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/orderservice")
 public class OrderController {
 
     @Autowired
@@ -19,13 +20,13 @@ public class OrderController {
     @Autowired
     private SequenceGeneratorService sequenceGenerator;
 
-    @GetMapping("api/v1/orders/{userId}")
+    @GetMapping("/api/v1/orders/{userId}")
     public ResponseEntity<List<Order>> getOrders(@PathVariable int userId) {
         List<Order> orders = repository.findAllByUserId(userId);
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
-    @PostMapping("api/v1/addOrder")
+    @PostMapping("/api/v1/addorder")
     public ResponseEntity<Order> addOrder (@RequestBody Order order) {
         order.setOrderId(sequenceGenerator.generateSequence(Order.SEQUENCE_NAME));
         repository.save(order);

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/categoryservice")
 public class MenuController {
     @Autowired
     private MenuRepository repository;
@@ -18,13 +19,13 @@ public class MenuController {
     @Autowired
     private SequenceGeneratorService sequenceGenerator;
 
-    @GetMapping("api/v1/menu/{categoryId}")
+    @GetMapping("/api/v1/menu/{categoryId}")
     public ResponseEntity<List<Menu>> getMenus(@PathVariable int categoryId) {
         List<Menu> menus = repository.findAllByCategoryId(categoryId);
         return new ResponseEntity<>(menus, HttpStatus.OK);
     }
 
-    @PostMapping("api/v1/addMenu")
+    @PostMapping("/api/v1/addmenu")
     public ResponseEntity<Menu> addMenu(@RequestBody Menu menu) {
         menu.setMenuId(sequenceGenerator.generateSequence(Menu.SEQUENCE_NAME));
         repository.save(menu);

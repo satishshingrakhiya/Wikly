@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,10 +22,17 @@ public class CategoryController {
 
     @GetMapping("api/v1/categories/{societyId}")
     public ResponseEntity<List<Category>> getCategories (@PathVariable int societyId) {
-        List<Category> categories = repository.findAll()
-                .stream()
-                .filter(category -> category.getSocieties().contains(societyId))
-                .collect(Collectors.toList());
+        List<Category> categories;
+        try {
+            categories = repository.findAll()
+                    .stream()
+                    .filter(category -> category.getSocieties().contains(societyId))
+                    .collect(Collectors.toList());
+        }
+        catch (Exception e) {
+            categories = new ArrayList<>();
+        }
+
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 

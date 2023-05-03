@@ -27,6 +27,7 @@ public class MenuController {
     @PostMapping("api/v1/addMenu")
     public ResponseEntity<Menu> addMenu(@RequestBody Menu menu) {
         menu.setMenuId(sequenceGenerator.generateSequence(Menu.SEQUENCE_NAME));
-        return new ResponseEntity<>(repository.save(menu), HttpStatus.CREATED);
+        repository.save(menu);
+        return new ResponseEntity<>(menu, HttpStatus.CREATED);
     }
 }

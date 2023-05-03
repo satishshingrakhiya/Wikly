@@ -16,7 +16,7 @@ public class Menu {
     @Id
     private int menuId;
     private int categoryId;
-    private String MenuName;
+    private String menuName;
     private List<Map<String, Integer>> availableIn;
     private String unit;
 }

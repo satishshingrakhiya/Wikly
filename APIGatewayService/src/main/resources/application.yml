@@ -6,23 +6,28 @@ spring:
     gateway:
       routes:
         - id: category-service
-          uri: http://localhost:8081/
+          uri:
+            lb://category-service
           predicates:
             - Path=/categoryservice/**
         - id: cart-service
-          uri: http://localhost:8082/
+          uri:
+            lb://cart-service
           predicates:
             - Path=/cartservice/**
         - id: order-service
-          uri: http://localhost:8083/
+          uri:
+            lb://order-service
           predicates:
             - Path=/orderservice/**
         - id: review-service
-          uri: http://localhost:8084/
+          uri:
+            lb://review-service
           predicates:
             - Path=/reviewservice/**
         - id: user-service
-          uri: http://localhost:8085/
+          uri:
+            lb://user-service
           predicates:
             - Path=/userservice/**
   application:

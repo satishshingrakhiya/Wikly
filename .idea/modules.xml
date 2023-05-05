@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/APIGatewayService/APIGatewayService.iml" filepath="$PROJECT_DIR$/APIGatewayService/APIGatewayService.iml" />
       <module fileurl="file://$PROJECT_DIR$/CartService/CartService.iml" filepath="$PROJECT_DIR$/CartService/CartService.iml" />
       <module fileurl="file://$PROJECT_DIR$/Category-Service/Category-Service.iml" filepath="$PROJECT_DIR$/Category-Service/Category-Service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DiscoveryService/DiscoveryService.iml" filepath="$PROJECT_DIR$/DiscoveryService/DiscoveryService.iml" />
       <module fileurl="file://$PROJECT_DIR$/OrderService/OrderService.iml" filepath="$PROJECT_DIR$/OrderService/OrderService.iml" />
       <module fileurl="file://$PROJECT_DIR$/ReviewService/ReviewService.iml" filepath="$PROJECT_DIR$/ReviewService/ReviewService.iml" />
       <module fileurl="file://$PROJECT_DIR$/UserService/UserService.iml" filepath="$PROJECT_DIR$/UserService/UserService.iml" />

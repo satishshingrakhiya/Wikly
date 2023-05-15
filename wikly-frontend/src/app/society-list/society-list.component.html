@@ -1,0 +1,12 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th> Society List </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let society of societies">
+            <td (click)="getCategories(society.societyId)">{{society.societyName}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -22,6 +22,7 @@ public class CategoryController {
     private SequenceGeneratorService sequenceGenerator;
 
     @GetMapping("/api/v1/categories/{societyId}")
+    @CrossOrigin
     public ResponseEntity<List<Category>> getCategories (@PathVariable int societyId) {
         List<Category> categories;
         try {

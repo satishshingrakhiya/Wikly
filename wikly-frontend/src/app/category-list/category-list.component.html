@@ -1,0 +1,16 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th><h1> Categories </h1></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let category of categories">
+            <td (click)="getReviews(category.categoryId)">
+                <div><small>{{category.discount}} % OFF</small></div>
+                <div><h3>{{category.categoryName}}</h3></div>
+                <div><small>{{category.buyers}} buying</small></div>             
+        </td>
+        </tr>
+    </tbody>
+</table>

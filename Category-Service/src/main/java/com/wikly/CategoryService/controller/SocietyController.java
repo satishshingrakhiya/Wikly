@@ -21,6 +21,7 @@ public class SocietyController {
     private SequenceGeneratorService sequenceGenerator;
 
     @GetMapping("api/v1/societies")
+    @CrossOrigin
     public ResponseEntity<List<Society>> getSocieties() {
         List<Society> societies = repository.findAll();
         return new ResponseEntity<>(societies, HttpStatus.OK);

@@ -20,6 +20,7 @@ public class ReviewController {
     private SequenceGeneratorService sequenceGenerator;
 
     @GetMapping("/api/v1/reviews/{categoryId}")
+    @CrossOrigin
     public ResponseEntity<List<Review>> getReview(@PathVariable int categoryId) {
         List<Review> reviews = repository.findAllByCategoryId(categoryId);
         return new ResponseEntity<>(reviews, HttpStatus.OK);

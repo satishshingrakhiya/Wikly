@@ -1,0 +1,21 @@
+<div>
+<h3>Category Name</h3>
+<small>Next Delivery</small>
+<h4>Delivery Date</h4>
+<span>Buyers</span>
+</div>
+
+<div>
+    <div>
+        <div>
+            Group Rating
+        </div>
+        <div>{{rating}}/5</div>
+    </div>
+    <div> <button class="btn btn-primary"> Add Review </button></div>
+    <div *ngFor="let review of reviews">
+        <div>{{review.rating}}/5</div>
+        <div>{{review.userName}}</div>
+        <div>{{review.description}}</div>
+    </div>
+</div>
